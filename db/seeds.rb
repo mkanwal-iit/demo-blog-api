@@ -1,0 +1,12 @@
+User.create!(name: "Peter", email: "peter@example.com", password: "password")
+User.create!(name: "Test", email: "test@example.com", password: "password")
+
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=1")
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=2")
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=3")
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=4")
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=5")
+Post.create!(user_id: 1, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=6")
+Post.create!(user_id: 2, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=7")
+Post.create!(user_id: 2, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=8")
+Post.create!(user_id: 2, title: Faker::Company.catch_phrase, body: Faker::Hipster.paragraph(sentence_count: 6), image: "https://picsum.photos/640/480?random=9")
