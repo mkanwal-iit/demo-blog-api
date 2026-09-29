@@ -7,7 +7,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
 
     data = JSON.parse(response.body)
-    assert_equal ["email", "user_id"], data.keys
+    assert_equal [ "email", "user_id" ], data.keys
   end
 
   test "destroy" do

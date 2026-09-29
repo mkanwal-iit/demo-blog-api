@@ -37,7 +37,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "title", "image", "body", "created_at", "updated_at"], data.keys
+    assert_equal [ "id", "title", "image", "body", "created_at", "updated_at", "owner" ], data.keys
   end
 
   test "update" do
