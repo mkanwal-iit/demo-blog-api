@@ -1,25 +1,133 @@
-# README
+# Demo Blog API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A RESTful JSON API for a blogging platform, built with **Ruby on Rails 7.2** and **PostgreSQL**.
+Supports user registration, session-based authentication, and full CRUD on blog posts.
 
-Things you may want to cover:
+![CI](https://github.com/mkanwal-iit/demo-blog-api/actions/workflows/ci.yml/badge.svg)
 
-* Ruby version
+---
 
-* System dependencies
+## Features
 
-* Configuration
+- **User accounts** — registration with securely hashed passwords (`bcrypt` via `has_secure_password`)
+- **Authentication** — login and logout through session endpoints
+- **Posts** — create, read, update, and delete blog posts, each belonging to a user
+- **Automated CI** — every push runs tests, a security scan, a dependency audit, and a style check
 
-* Database creation
+---
 
-* Database initialization
+## Tech Stack
 
-* How to run the test suite
+| Layer | Technology |
+| --- | --- |
+| Framework | Ruby on Rails 7.2 |
+| Language | Ruby 3.3.4 |
+| Database | PostgreSQL |
+| Testing | Minitest |
+| Security scanning | Brakeman |
+| Linting | RuboCop (`rubocop-rails-omakase`) |
+| Containerization | Docker |
+| CI | GitHub Actions |
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## API Endpoints
 
-* ...
-# demo-blog-api
+### Users
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/users` | Register a new user |
+
+### Sessions
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/sessions` | Log in |
+| `DELETE` | `/sessions` | Log out |
+
+### Posts
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/posts` | List all posts |
+| `POST` | `/posts` | Create a post |
+| `GET` | `/posts/:id` | Fetch a single post |
+| `PATCH` | `/posts/:id` | Update a post |
+| `DELETE` | `/posts/:id` | Delete a post |
+
+### Health
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/up` | Health check — returns 200 if the app boots cleanly |
+
+---
+
+## Data Model
+
+```
+User                          Post
+├── name                      ├── user_id  → User
+├── email                     ├── title
+├── password_digest           ├── body
+├── created_at                ├── image
+└── updated_at                ├── created_at
+                              └── updated_at
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Ruby 3.3.4
+- PostgreSQL
+- Bundler
+
+### Setup
+
+```bash
+git clone https://github.com/mkanwal-iit/demo-blog-api.git
+cd demo-blog-api
+
+bundle install          # install dependencies
+bin/rails db:create     # create the database
+bin/rails db:migrate    # run migrations
+bin/rails server        # start on http://localhost:3000
+```
+
+### Example request
+
+```bash
+curl -X POST http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Ada", "email": "ada@example.com", "password": "secret123"}'
+```
+
+---
+
+## Development
+
+```bash
+bin/rails test          # run the test suite
+bin/rubocop             # check code style
+bin/brakeman            # scan for security vulnerabilities
+```
+
+### Docker
+
+```bash
+docker build -t demo-blog-api .
+docker run -p 3000:3000 demo-blog-api
+```
+
+---
+
+## Continuous Integration
+
+Every push to `main` and every pull request triggers [`.github/workflows/ci.yml`](.github/workflows/ci.yml),
+which runs four jobs in parallel:
+
+| Job | Purpose |
+| --- | --- |
+| `test` | Runs the Minitest suite against a live PostgreSQL service container |
+| `scan_ruby` | Brakeman static analysis for Rails security vulnerabilities |
+| `scan_js` | Audits JavaScript dependencies for known CVEs |
+| `lint` | Enforces consistent style with RuboCop |
