@@ -5,6 +5,12 @@ Supports user registration, session-based authentication, and full CRUD on blog 
 
 ![CI](https://github.com/mkanwal-iit/demo-blog-api/actions/workflows/ci.yml/badge.svg)
 
+**Live API:** [demo-blog-api-q9rt.onrender.com](https://demo-blog-api-q9rt.onrender.com) —
+try [`/posts`](https://demo-blog-api-q9rt.onrender.com/posts) for seeded sample data.
+
+> Hosted on Render's free tier, which sleeps after 15 minutes of inactivity.
+> The first request after a sleep takes roughly 30 seconds to wake the container.
+
 ---
 
 ## Features
@@ -117,6 +123,27 @@ bin/brakeman            # scan for security vulnerabilities
 docker build -t demo-blog-api .
 docker run -p 3000:3000 demo-blog-api
 ```
+
+---
+
+## Deployment
+
+Deployed to [Render](https://render.com) as a Docker service, built from the
+`Dockerfile` in this repository. Pushes to `main` trigger an automatic redeploy.
+
+**Configuration** is supplied entirely through environment variables, so the same
+image runs unchanged locally, in CI, and in production:
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | PostgreSQL connection string; Rails merges it over `config/database.yml` |
+| `RAILS_ENV` | `production` |
+| `SECRET_KEY_BASE` | Signs session cookies so they cannot be forged |
+
+**Startup** runs through [`bin/docker-entrypoint`](bin/docker-entrypoint), which applies
+migrations and seeds before booting Puma. Seeding runs explicitly because `db:prepare`
+only seeds a database it creates itself; `db/seeds.rb` is idempotent, so repeating it on
+every boot is safe.
 
 ---
 
