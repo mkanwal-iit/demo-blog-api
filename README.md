@@ -1,6 +1,6 @@
 # Demo Blog API
 
-A RESTful JSON API for a blogging platform, built with **Ruby on Rails 7.2** and **PostgreSQL**.
+A RESTful JSON API for a blogging platform, built with **Ruby on Rails 8.1** and **PostgreSQL**.
 Supports user registration, session-based authentication, and full CRUD on blog posts.
 
 ![CI](https://github.com/mkanwal-iit/demo-blog-api/actions/workflows/ci.yml/badge.svg)
@@ -20,7 +20,7 @@ Supports user registration, session-based authentication, and full CRUD on blog 
 
 | Layer | Technology |
 | --- | --- |
-| Framework | Ruby on Rails 7.2 |
+| Framework | Ruby on Rails 8.1 |
 | Language | Ruby 3.3.4 |
 | Database | PostgreSQL |
 | Testing | Minitest |
