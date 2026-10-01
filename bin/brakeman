@@ -2,6 +2,8 @@
 require "rubygems"
 require "bundler/setup"
 
-ARGV.unshift("--ensure-latest")
+# --ensure-latest removed deliberately: it fails the scan whenever a newer
+# Brakeman is published, so CI breaks on unrelated pull requests with no change
+# to this repository. Dependabot already keeps the gem current.
 
 load Gem.bin_path("brakeman", "brakeman")
