@@ -6,7 +6,10 @@ Supports user registration, session-based authentication, and full CRUD on blog 
 ![CI](https://github.com/mkanwal-iit/demo-blog-api/actions/workflows/ci.yml/badge.svg)
 
 **Live API:** [demo-blog-api-q9rt.onrender.com](https://demo-blog-api-q9rt.onrender.com) —
-try [`/posts`](https://demo-blog-api-q9rt.onrender.com/posts) for seeded sample data.
+try [`/posts.json`](https://demo-blog-api-q9rt.onrender.com/posts.json) for seeded sample data.
+
+> Append `.json` to request JSON explicitly. Without it, Rails infers the format from
+> the `Accept` header, and a browser asks for HTML first.
 
 > Hosted on Render's free tier, which sleeps after 15 minutes of inactivity.
 > The first request after a sleep takes roughly 30 seconds to wake the container.
